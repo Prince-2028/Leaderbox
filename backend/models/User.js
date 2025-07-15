@@ -11,6 +11,6 @@ const userScehme = new mongoose.Schema(
       default: 0,
     },
   },
-  {timestamps: true}
+  { timestamps: true }
 );
 export const User = mongoose.model("User", userScehme);
