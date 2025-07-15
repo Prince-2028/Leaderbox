@@ -16,7 +16,8 @@ const AddUser = ({ onAdd, showModal, setShowModal }) => {
     e.preventDefault();
     if (form.name.trim() === "") return;
     try {
-      await axios.post("http://localhost:5000/api/users", form);
+      await axios.post("https://leaderbox.onrender.com/api/users", form);
+
       if (onAdd) onAdd();
       setForm({ name: "", totalPoints: 0 });
       setShowModal(false);
