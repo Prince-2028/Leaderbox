@@ -1,10 +1,10 @@
-import AddUser from "./components/AddUser";
+import UserList from "./components/UserList";
 const App = () => {
   return (
-     <h1 className="text-3xl font-bold underline">
-    Hello world!
-    <AddUser/>
-  </h1>
+    <div className="text-center">
+
+      <UserList/>
+    </div>
   )
 };
 
