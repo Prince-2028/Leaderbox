@@ -29,12 +29,16 @@ const AddUser = ({ onAdd, showModal, setShowModal }) => {
     <>
       <button
         onClick={() => setShowModal(true)}
-        className="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700 mb-4"
+        className="bg-gradient-to-r from-purple-600 to-blue-600 px-6 py-2 rounded-xl text-white text-base font-semibold shadow-lg hover:from-purple-700 hover:to-blue-700 transition duration-300 ease-in-out"
       >
         Add User
       </button>
+
       {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center z-50" style={{ background: "rgba(0,0,0,0.1)" }}>
+        <div
+          className="fixed inset-0 flex items-center justify-center z-50"
+          style={{ background: "rgba(0,0,0,0.1)" }}
+        >
           <div className="bg-white p-8 rounded-lg shadow-lg min-w-[320px]">
             <h2 className="text-xl font-bold mb-4 text-center">Add User</h2>
             <form onSubmit={handleSubmit}>

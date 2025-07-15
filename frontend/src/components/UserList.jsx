@@ -11,6 +11,8 @@ const UserList = () => {
   const fetchUsers = async () => {
     try {
       const response = await axios.get("http://localhost:5000/api/users");
+      // Sort users by totalPoints in descending order
+      response.data.sort((a, b) => b.totalPoints - a.totalPoints);
       setUsers(response.data);
     } catch (error) {
       console.error("Error fetching users:", error);
@@ -59,8 +61,13 @@ const UserList = () => {
       )}
       <AddUser showModal={showAddModal} setShowModal={setShowAddModal} />
 
-      <button onClick={claimPoints}>claim</button>
-      <h2 style={{ textAlign: "center", marginBottom: 24 }}>User List</h2>
+      <button
+        onClick={claimPoints}
+        className="bg-gradient-to-r from-green-500 m-5 to-blue-500 text-white px-6 py-2 rounded-xl text-base font-semibold shadow-lg hover:from-green-600 hover:to-blue-600 transition duration-300 ease-in-out"
+      >
+        Claim
+      </button>
+
       <select
         style={{
           width: "100%",
@@ -84,26 +91,52 @@ const UserList = () => {
           </option>
         ))}
       </select>
-      <div>
-        {users.map((user, idx) => (
-          <div
-            key={idx}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "10px 16px",
-              margin: "8px 0",
-              background: "#f5f5f5",
-              borderRadius: "6px",
-              boxShadow: "0 1px 3px rgba(0,0,0,0.07)",
-            }}
-          >
-            <span style={{ fontWeight: "bold" }}>{user.name}</span>
-            <span style={{ color: "#555" }}>Points: {user.totalPoints}</span>
-          </div>
-        ))}
+     <div>
+  {users.map((user, idx) => (
+    <div
+      key={idx}
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "10px 16px",
+        margin: "8px 0",
+        background: "#f5f5f5",
+        borderRadius: "8px",
+        boxShadow: "0 1px 4px rgba(0,0,0,0.07)",
+      }}
+    >
+      {/* Left Side: Number + Name */}
+      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <span
+          style={{
+            backgroundColor: "#ffab00",
+            color: "#fff",
+            width: "26px",
+            height: "26px",
+            borderRadius: "50%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontWeight: "bold",
+            fontSize: "14px",
+          }}
+        >
+          {idx + 1}
+        </span>
+        <span style={{ fontWeight: "bold", fontSize: "16px", color: "#333" }}>
+          {user.name}
+        </span>
       </div>
+
+      {/* Right Side: Points */}
+      <span style={{ color: "#555", fontSize: "15px" }}>
+        Points: {user.totalPoints}
+      </span>
+    </div>
+  ))}
+</div>
+
     </div>
   );
 };
